@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=3.900.7-nowrap
+version=3.900.7-sequential
 
 source /etc/profile.d/modules.sh
 module purge
