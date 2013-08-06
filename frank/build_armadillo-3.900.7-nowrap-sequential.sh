@@ -1,17 +1,17 @@
 #!/bin/bash
 
-version=3.900.6
+version=3.900.7-nowrap-sequential
 
-module rm cmake intel boost openmpi mkl
+module rm gcc mkl boost armadillo
 module load cmake
-module load intel/11.1.072
-module load boost/1.51.0-intel13
-module load openmpi/1.4.3-intel11
-module load mkl/11.1.072/icc-st
+module load gcc/4.4.4
+module load mkl/2011/icc-st
+module load boost/1.50.0-gcc45
+module load armadillo/${version}
 
-rm -rf ./armadillo-${version}-builddir >&/dev/null
-mkdir ./armadillo-${version}-builddir
-cd ./armadillo-${version}-builddir
+rm -rf $HOME/opt/build/armadillo-${version}-builddir >& /dev/null
+mkdir  $HOME/opt/build/armadillo-${version}-builddir
+cd     $HOME/opt/build/armadillo-${version}-builddir
 
 ABORT=no
 
@@ -31,16 +31,11 @@ check_cmake
 
 test "$ABORT" = yes && exit -1
 
-rm -f CMakeCache.txt
-rm -f *.cmake
-rm -rf CMakeFiles
-
 cmake \
     -DCMAKE_INSTALL_PREFIX=$HOME/opt/armadillo/${version} \
-    -DCMAKE_C_COMPILER=icc \
-    -DCMAKE_CXX_COMPILER=icpc \
-    -DCMAKE_Fortran_COMPILER=ifort \
-    -DCMAKE_LINKER=xild \
+    -DCMAKE_C_COMPILER=gcc \
+    -DCMAKE_CXX_COMPILER=g++ \
+    -DCMAKE_LINKER=ld \
     ../armadillo-${version}
 
 make -j8
