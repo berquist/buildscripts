@@ -4,7 +4,7 @@ version=3.900.7
 
 source /etc/profile.d/modules.sh
 module purge
-#module load intel/2013
+module load intel/2011
 module load mkl/2011/icc-st
 module load armadillo/${version}
 
@@ -32,7 +32,6 @@ test "$ABORT" = yes && exit -1
 
 cmake \
     -DCMAKE_INSTALL_PREFIX=$HOME/opt/armadillo/${version} \
-    -DCMAKE_C_COMPILER=gcc \
     -DCMAKE_CXX_COMPILER=g++ \
     -DCMAKE_LINKER=ld \
     ../armadillo-${version}

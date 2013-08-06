@@ -2,7 +2,6 @@
 
 source /etc/profile.d/modules.sh
 module purge
-module load gcc/builtin/4.4.7
 module load intel/2011
 module load mkl/2011/icc-st
 module load armadillo/3.900.7-nowrap

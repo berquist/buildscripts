@@ -32,9 +32,8 @@ test "$ABORT" = yes && exit -1
 
 cmake \
     -DCMAKE_INSTALL_PREFIX=$HOME/opt/armadillo/${version} \
-    -DCMAKE_C_COMPILER=icc \
-    -DCMAKE_CXX_COMPILER=icpc \
-    -DCMAKE_LINKER=xild \
+    -DCMAKE_CXX_COMPILER=g++ \
+    -DCMAKE_LINKER=ld \
     ../armadillo-${version}
 
 make -j8
