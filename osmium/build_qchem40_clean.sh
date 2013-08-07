@@ -6,7 +6,7 @@ module load gcc/builtin/4.4.7
 module load intel/2011
 module load mkl/2011/icc-st
 module load armadillo/3.900.7-nowrap-sequential
-module load qchem/dev/4.0-intel11
+module load qchem/dev/4.0-intel11-clean
 
 # export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu/c++/4.7/bits:/usr/include/x86_64-linux-gnu/c++/4.7:/usr/include/x86_64-linux-gnu/c++$CPLUS_INCLUDE_PATH
 
