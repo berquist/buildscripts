@@ -16,8 +16,7 @@ ldd armadillo-3.900.7*builddir/libarmadillo.so >> log.armadillo_ldd_results
 source /etc/profile.d/modules.sh
 module rm gcc intel mkl
 module load gcc/builtin/4.4.7
-module load intel/2011
-module load mkl/2011/icc-st
+module load intel/2011.11
 
 echo "*** After loading modules ***" >> log.armadillo_ldd_results
 ldd armadillo-3.900.7*builddir/libarmadillo.so >> log.armadillo_ldd_results
