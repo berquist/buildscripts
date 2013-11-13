@@ -1,17 +1,21 @@
 #!/bin/bash
 
 module purge
-module load intel/2013.0
-module load boost/1.51.0-intel13
-module load openmpi/1.6.1-intel13
-module load mkl/2013.0/icc-mt-openmpi-i8
-module load cuda/5.0
-module load python/epd-7.3
+module load modules
+# module load intel/2013.0
+# module load boost/1.51.0-intel13
+# module load openmpi/1.6.1-intel13
+# module load mkl/2013.0/icc-mt-openmpi-i8
+# module load cuda/5.0
+# module load python/anaconda-1.6.1-sam
+module load amber/12-intel-custom
 
-export AMBERHOME="/home/dlambrecht/erb74/qcprograms/amber/amber12"
+export MKL_HOME=$MKL_ROOT
+
 cd $AMBERHOME
-./update_amber --update
+# ./update_amber --update
 make clean >& /dev/null
+make uninstall >& /dev/null
 
 ./configure intel >& log.configure.serial
 make install -j4 >& log.make.install.serial
