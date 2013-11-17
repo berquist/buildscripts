@@ -2,14 +2,14 @@
 
 source /etc/profile.d/modules.sh
 module purge
-module load intel/2013
-module load openmpi/1.6.5-intel13-i8
+module load intel/2013.sp1.1
+module load openmpi/1.6.5-i2013.sp1.1-i8
 
-rm -r $HOME/opt/build/openmpi-${OPENMPI_VER}-builddir >& /dev/null
-mkdir $HOME/opt/build/openmpi-${OPENMPI_VER}-builddir
-cd    $HOME/opt/build/openmpi-${OPENMPI_VER}-builddir
+rm -r $apps/build/openmpi-${OPENMPI_VER}-builddir >& /dev/null
+mkdir $apps/build/openmpi-${OPENMPI_VER}-builddir
+cd    $apps/build/openmpi-${OPENMPI_VER}-builddir
 
-$HOME/opt/build/openmpi-${OPENMPI_VER}/configure \
+$apps/build/openmpi-${OPENMPI_VER}/configure \
     --prefix=$OPENMPI_ROOT \
     --with-hwloc=/usr \
     --with-libltdl=/usr \
