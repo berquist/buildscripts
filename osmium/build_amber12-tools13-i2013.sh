@@ -2,13 +2,11 @@
 
 source /etc/profile.d/modules.sh
 module purge
-module load modules
 module load intel/2013.sp1.1
 module load openmpi/1.6.5-i2013.sp1.1
-# module load boost/
 module load amber/12-tools13-i2013
 
-export MKL_HOME=$MKL_ROOT
+export MKL_HOME=$MKLROOT
 
 cd $AMBERHOME
 # ./update_amber --update
@@ -16,7 +14,8 @@ make clean >& /dev/null
 make uninstall >& /dev/null
 
 ./configure intel >& log.configure.serial
-# patch $AMBERHOME/src/sander/qm2_extern_orc_module.F90 < ../01.printorcastep.patch
+#patch ./AmberTools/src/config.h < ../config_osmium_serial.patch >& /dev/null
+#patch $AMBERHOME/src/sander/qm2_extern_orc_module.F90 < ../01.printorcastep.patch
 make install -j8 >& log.make.install.serial
 make test.serial >& log.make.test.serial
 
