@@ -2,14 +2,12 @@
 
 source /etc/profile.d/modules.sh
 module purge
-module load gcc/builtin/4.4.7
-module load intel/2011
-module load mkl/2011/icc-st
-module load qchem/4.1-release.O2.serial
+module load intel/2013.sp1.1
+module load qchem/4.1-release.O2.omp
 
 cd $QC
 
-./configure intel release mkl
+./configure intel release mkl openmp
 
 cd $QC/build
 
@@ -19,4 +17,4 @@ make generated_headers >& ../log.make.headers
 make -j8 >& ../log.make
 
 mkdir $QC/exe >& /dev/null
-mv qcprog.exe $QC/exe
+ln -fs $QC/build/qcprog.exe $QC/exe/qcprog.exe
