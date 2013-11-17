@@ -2,13 +2,14 @@
 
 source /etc/profile.d/modules.sh
 module purge
-module load intel/2013.sp1.1
-module load openmpi/1.6.5-i2013.sp1.1-i8
+module load gcc/builtin/4.4.7
+module load intel/2011.11
+module load openmpi/1.6.5-i2011.11
 
-cd $apps/build/openmpi-$OPENMPI_BASE
+cd $apps/build/openmpi-$OPENMPI_VER
 make clean >& /dev/null
 make uninstall >& /dev/null
 export CC=icc; export CXX=icpc; export FC=ifort; export F77=ifort
-FFLAGS=-i8 FCFLAGS=-i8 ./configure --prefix=$OPENMPI_ROOT
+./configure --prefix=$OPENMPI_ROOT
 make -j8
 make install 
