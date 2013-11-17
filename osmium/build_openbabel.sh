@@ -1,8 +1,9 @@
 #!/bin/bash
 
-rm -rf ./openbabel-2.3.2 >& /dev/null
+
+rm -rf  ./openbabel-2.3.2 >& /dev/null
 tar -xf ./openbabel-2-3-2.tar.gz
-mv ./openbabel-2-3-2 ./openbabel-2.3.2
+mv      ./openbabel-2-3-2 ./openbabel-2.3.2
 
 rm -rf ./openbabel-build
 mkdir  ./openbabel-build

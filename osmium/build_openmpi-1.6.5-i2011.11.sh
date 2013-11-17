@@ -1,16 +1,15 @@
 #!/bin/bash
 
-source /etc/profile.d/modules.sh
 module purge
 module load compilers/gcc/builtin/4.4.7
 module load intel/2011.11
 module load openmpi/1.6.5-i2011.11
 
-rm -r $apps/build/openmpi-${OPENMPI_VER}-builddir >& /dev/null
-mkdir $apps/build/openmpi-${OPENMPI_VER}-builddir
-cd    $apps/build/openmpi-${OPENMPI_VER}-builddir
-
-$apps/build/openmpi-${OPENMPI_VER}/configure \
+cd $apps/build/openmpi-${OPENMPI_VER}
+make clean >& /dev/null
+make distclean >& /dev/null
+make uninstall >& /dev/null
+./configure \
     --prefix=$OPENMPI_ROOT \
     --with-hwloc=/usr \
     --with-libltdl=/usr \
