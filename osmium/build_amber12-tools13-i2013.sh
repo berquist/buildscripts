@@ -2,9 +2,13 @@
 
 source /etc/profile.d/modules.sh
 module purge
+module load python/anaconda
 module load intel/2013.sp1.1
 module load openmpi/1.6.5-i2013.sp1.1
 module load amber/12-tools13-i2013
+module load orca/3.0.0
+module load gaussian/blacklight/g09D.01
+module load nwchem/6.0-binary
 
 export MKL_HOME=$MKLROOT
 
