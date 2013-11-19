@@ -9,7 +9,7 @@ module load amber/12-tools13-i2013
 module load orca/3.0.0
 module load nwchem/6.0-binary
 
-export MKL_HOME=$MKL_ROOT
+export MKL_HOME=$MKLROOT
 
 cd $AMBERHOME
 # ./update_amber --update
