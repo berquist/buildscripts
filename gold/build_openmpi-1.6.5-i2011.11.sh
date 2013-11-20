@@ -13,6 +13,7 @@ module load openmpi/1.6.5-i2011.11
     --with-threads=posix \
     --with-valgrind \
     --enable-pretty-print-stacktrace \
+    --without-slurm \
     --enable-static \
     --enable-shared \
     --enable-branch-probabilities \

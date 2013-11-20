@@ -16,6 +16,7 @@ make distclean >& /dev/null
     --with-threads=posix \
     --with-valgrind \
     --enable-pretty-print-stacktrace \
+    --without-slurm \
     --enable-static \
     --enable-shared \
     --enable-branch-probabilities \
