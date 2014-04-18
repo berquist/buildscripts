@@ -2,7 +2,7 @@
 
 cd $QC
 
-./configure intel release mkl openmp
+./configure gcc release timings acml openmp
 
 cd $QC/build
 
