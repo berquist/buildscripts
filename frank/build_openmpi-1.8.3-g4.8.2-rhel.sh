@@ -3,7 +3,7 @@
 module purge
 module load gcc/4.8.2-rhel
 
-version=1.6.5
+version=1.8.3
 
 cd $apps/build/openmpi-${version}
 mkdir build_g4.8.2-rhel

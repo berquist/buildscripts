@@ -2,15 +2,13 @@
 
 module purge
 module load intel/2013.0
-# module load gcc/4.8.2-rhel
 
-version=1.6.5
+version=1.8.3
 
 cd $apps/build/openmpi-${version}
 mkdir build_i2013.0
 cd build_i2013.0
 
-# comment out this line of exports to build with GNU compilers
 export CC=icc; export CXX=icpc; export FC=ifort; export F77=ifort
 
 ../configure \
