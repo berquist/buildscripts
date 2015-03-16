@@ -1,37 +1,39 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 module purge
-module load gold sys modules torque
-#module load env/intel-2013.0-openmpi-1.6
-#module load boost/1.51.0-intel13
-module load gcc/4.7.2
-module load openmpi/1.6.3-gcc47
-module load mkl/11.1.072/gcc-st
-module load boost/1.50.0-gcc45
-module load cmake
-module load eigen
-#module load python/epd-7.3
+module load modules
 
-echo "rm -rf ./openbabel-build"
-rm -rf ./openbabel-build
-echo "mkdir ./openbabel-build"
-mkdir ./openbabel-build
-echo "cd ./openbabel-build"
-cd ./openbabel-build
+module load doxygen/git
+module load pcre/8.36
+module load swig/3.0.4
+module load python/anaconda3
 
-cmake ../openbabel-2.3.2 \
-    -DCMAKE_BUILD_TYPE=DEBUG \
-    -DCMAKE_C_COMPILER=CC \
-    -DCMAKE_CXX_COMPILER=CXX \
-    -DENABLE_TESTS=ON \
-    -DEIGEN2_INCLUDE_DIR=/opt/sam/eigen/2.0.17/include \
-    -DEIGEN3_INCLUDE_DIR=/opt/sam/eigen/3.1.1/include \
-    -DBUILD_GUI=ON \
-    -DRUN_SWIG=ON \
-    -DSWIG_DIR=/opt/sam/swig/2.0.9-defaults/share/swig/2.0.9 \
-    -DSWIG_EXECUTABLE=/opt/sam/swig/2.0.9-defaults/bin/swig \
-    -DPYTHON_BINDINGS=ON \
-    >& log.cmake
+module load cmake/2.8.11.2
+module load eigen/2.0.17
+module load eigen/3.2.1-gcc48
+module load boost/1.55.0-gcc45
 
-make all -j8 >& log.make
-make test    >& log.make.test
+module rm gcc
+module load gcc/4.8.2
+
+mkdir ${apps}/build/openbabel-git
+cd ${apps}/build/openbabel-git
+
+cmake ${HOME}/repositories/openbabel \
+      -DCMAKE_INSTALL_PREFIX=${apps}/openbabel/git \
+      -DCMAKE_C_COMPILER=gcc \
+      -DCMAKE_CXX_COMPILER=g++ \
+      -DBUILD_DOCS=ON \
+      -DBUILD_EXAMPLES=OFF \
+      -DBUILD_GUI=ON \
+      -DENABLE_TESTS=ON \
+      -DENABLE_OPENMP=ON \
+      -DRUN_SWIG=ON \
+      -DPYTHON_BINDINGS=ON \
+      -DR_BINDINGS=OFF
+
+sed -i "/PYTHON_INCLUDE_DIR:PATH=/c\PYTHON_INCLUDE_DIR:PATH=${ANACONDA_INCLUDE}" CMakeCache.txt
+sed -i "/PYTHON_LIBRARY:FILEPATH=/c\PYTHON_LIBRARY:FILEPATH=${ANACONDA_LIB}/libpython3.so" CMakeCache.txt
+
+make all -j2
+make install
