@@ -1,0 +1,21 @@
+#!/bin/bash
+
+make_julia() {
+    make \
+        prefix=$apps/julia/git \
+        USE_INTEL_MKL=1 \
+        USE_INTEL_MKL_FFT=1 \
+        USE_BLAS64=1
+}
+
+make_install_julia() {
+    make \
+        prefix=$apps/julia/git \
+        USE_INTEL_MKL=1 \
+        USE_INTEL_MKL_FFT=1 \
+        USE_BLAS64=1 \
+        install
+}
+
+make_julia
+make_install_julia

@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
 
 module purge
-module load intel/2013.0
+module load gcc/5.2.0-rhel
 
 version=1.6.5
+compiler_ver=g5.2.0-rhel
 
 cd $apps/build/openmpi-${version}
-mkdir build_i2013.0
-cd build_i2013.0
-
-# comment out this line of exports to build with GNU compilers
-export CC=icc; export CXX=icpc; export FC=ifort; export F77=ifort
+mkdir build_${compiler_ver}
+cd build_${compiler_ver}
 
 ../configure \
-    --prefix=${apps}/mpi/openmpi/${version}-i2013.0 \
+    --prefix=${apps}/mpi/openmpi/${version}-${compiler_ver} \
     --disable-debug \
     --disable-debug-symbols \
     --enable-static \
