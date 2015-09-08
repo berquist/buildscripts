@@ -10,8 +10,9 @@ _basename=fftw
 pkgver=2.1.5
 archive=${_basename}-${pkgver}.tar.gz
 
-# wget http://www.fftw.org/${archive}
+cd ${apps}/build
 
+# wget http://www.fftw.org/${archive}
 # tar xf ${archive}
 
 cd ${_basename}-${pkgver}
