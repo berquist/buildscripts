@@ -1,9 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+ver=2.6.0
 
 make clean
 make configure
+
 ./configure \
-    --prefix=${apps}/git/2.2.1 \
+    --prefix="${apps}"/git/${ver} \
     --enable-pthreads
 
 # make -j4 all doc
