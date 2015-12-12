@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-compiler_ver=i2013.0
+compiler_ver=i2015.1.133
 
 module purge
-module load intel/2013.0
-module load mpi/openmpi/1.10.0-${compiler_ver}
+module load intel/2015.1.133
+module load mpi/openmpi/1.6.5-${compiler_ver}
 
 _basename=fftw
 pkgver=2.1.5
@@ -37,3 +37,6 @@ FFLAGS+="${_flags}"
     --enable-openmp \
     --enable-mpi \
     --with-pic
+
+make -j4
+make install

@@ -17,7 +17,7 @@ cd ${apps}/build
 
 cd ${_basename}-${pkgver}
 
-CFLAGS+=" -fomit-frame-pointer -malign-double -fstrict-aliasing -ffast-math"
+CFLAGS+=" -O3 -ffast-math -fomit-frame-pointer"
 
 ./configure \
     --with-gcc \
