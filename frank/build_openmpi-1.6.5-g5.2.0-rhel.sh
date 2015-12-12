@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
-module purge
-module load gcc/5.2.0-rhel
-
 version=1.6.5
 compiler_ver=g5.2.0-rhel
+module_ver=g5.2.0
+
+module purge
+module load gcc/${compiler_ver}
 
 cd $apps/build/openmpi-${version}
-mkdir build_${compiler_ver}
-cd build_${compiler_ver}
+mkdir build_${module_ver}
+cd build_${module_ver}
 
 ../configure \
-    --prefix=${apps}/mpi/openmpi/${version}-${compiler_ver} \
+    --prefix=${apps}/mpi/openmpi/${version}-${module_ver} \
     --disable-debug \
     --disable-debug-symbols \
     --enable-static \
@@ -21,5 +22,5 @@ cd build_${compiler_ver}
     --with-pic \
     --with-libltdl=internal
 
-# make -j4
-# make install
+make -j4
+make install
