@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+source /usr/local/Modules/default/init/bash
 
 module purge
 module load intel/2013.sp1.1
@@ -13,7 +15,9 @@ make distclean >& /dev/null
     --with-hwloc=/usr \
     --with-libltdl=/usr \
     --with-threads=posix \
+    --enable-smp-locks \
     --with-valgrind \
+    --enable-memchecker \
     --enable-pretty-print-stacktrace \
     --without-slurm \
     --enable-static \
@@ -22,6 +26,7 @@ make distclean >& /dev/null
     --enable-opal-multi-threads \
     --enable-mpi-thread-multiple \
     --enable-cxx-exceptions \
+    --enable-heterogeneous \
     CC=icc \
     CXX=icpc \
     FC=ifort \
@@ -29,5 +34,5 @@ make distclean >& /dev/null
     LD=xild \
     AR=xiar
 
-make -j8
-make install
+# make -j4
+# make install
