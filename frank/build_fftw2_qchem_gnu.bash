@@ -4,7 +4,7 @@ compiler_ver=g5.2.0-rhel
 
 module purge
 module load gcc/5.2.0-rhel
-module load mpi/openmpi/1.6.5-${compiler_ver}
+module load mpi/openmpi/1.10.0-${compiler_ver}
 
 _basename=fftw
 pkgver=2.1.5
@@ -30,4 +30,5 @@ CFLAGS+=" -O3 -ffast-math -fomit-frame-pointer"
     --with-pic
 
 # make -j4
-# make install
+# make check -j4
+# make install -j4
