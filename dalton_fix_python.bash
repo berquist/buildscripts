@@ -9,5 +9,6 @@ files=$(find . -type f)
 for file in ${files[@]};
 do
     sed -i 's|python$|python2|g' "${file}"
-    sed -i 's|python2 |python2 |g' "${file}"
+    sed -i 's|python |python2 |g' "${file}"
+    sed -i 's|COMMAND python |COMMAND python2 |g' "${file}"
 done
