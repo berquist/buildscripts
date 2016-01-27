@@ -8,6 +8,7 @@ files=$(find . -type f)
 
 for file in ${files[@]};
 do
+    sed -i 's|/usr/bin/env python$|/usr/bin/env python2|g' "${file}"
     sed -i 's|python$|python2|g' "${file}"
     sed -i 's|python |python2 |g' "${file}"
     sed -i 's|COMMAND python |COMMAND python2 |g' "${file}"
