@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 ./configure \
     --prefix=${apps}/emacs/24.5 \
