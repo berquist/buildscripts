@@ -1,13 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-ver=2.6.0
+ver=2.8.3
 
 make clean
 make configure
 
 ./configure \
-    --prefix="${apps}"/git/${ver} \
-    --enable-pthreads
+    --prefix="${apps}"/git/${ver}
 
 # make -j4 all doc
 # make install install-doc install-html
