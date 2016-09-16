@@ -2,9 +2,9 @@
 
 # source me!
 
-ver=2016.0-g5.3.0-openblas-omp
+ver=2016.1-g6.2.1-openblas-omp
 dir_build="${apps}"/build/dalton_"${ver}"
-dir_source="${apps}"/dalton/2016.0-source
+dir_source="${apps}"/dalton/2016.1-source
 
 source /etc/profile.d/modules.sh
 
