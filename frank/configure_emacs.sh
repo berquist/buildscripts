@@ -1,7 +1,9 @@
 #!/bin/sh
 
+# source me!
+
 ./configure \
-    --prefix=${apps}/emacs/24.5 \
+    --prefix=${apps}/emacs/25.1 \
     --without-xpm \
     --without-jpeg \
     --without-tiff \
