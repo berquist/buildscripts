@@ -2,24 +2,24 @@
 
 # source me!
 
-ver=2016.1-g6.2.1-openblas-omp
+ver=2016.2-g6.3.1-openblas-omp
 dir_build="${apps}"/build/dalton_"${ver}"
-dir_source="${apps}"/dalton/2016.1-source
+dir_source="${apps}"/dalton/2016.2-source
 
-source /etc/profile.d/modules.sh
+# source /etc/profile.d/modules.sh
 
-module purge
-module load dalton/${ver}
+# module purge
+# module load dalton/${ver}
 
 rm -rf "${dir_build}"
 mkdir "${dir_build}"
 cd "${dir_source}"
 
+# --prefix="${DALTON_ROOT}" \
+
 ./setup \
-    --prefix="${DALTON_ROOT}" \
+    --prefix="${apps}/dalton/${ver}" \
     --omp \
-    --gpu \
-    --cublas \
     "${dir_build}"
 
 # cd "${dir_build}"
