@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # source me!
 
-ver=15.0-g5.3.0-openblas-omp
+ver=16.0-g6.3.1-openblas
 dir_build="${apps}"/build/dirac_"${ver}"
-dir_source="${apps}"/dirac/15.0-source
+dir_source="${apps}"/dirac/DIRAC-16.0-Source
 
 module purge
 module load dirac/${ver}
@@ -13,10 +13,14 @@ rm -rf "${dir_build}"
 mkdir "${dir_build}"
 cd "${dir_source}"
 
+# --cc=gcc-5 \
+# --cxx=g++-5 \
+# --fc=gfortran-5 \
+#    --cmake-options='-DENABLE_PCMSOLVER=OFF' \
+
 ./setup \
     --prefix="${DIRAC_ROOT}" \
     --python=/usr/bin/python2 \
-    --coverage \
     "${dir_build}"
 
 # cd "${dir_build}"
