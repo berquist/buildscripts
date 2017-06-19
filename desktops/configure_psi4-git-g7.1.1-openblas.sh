@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # source me!
 
-ver=git-g6.3.1-openblas
+ver=git-g7.1.1-openblas
 dir_source=/media/Backup/repositories/psi4
 # dir_build=${apps}/build/psi4_${ver}
 dir_build=/media/Backup/repositories/psi4/build
