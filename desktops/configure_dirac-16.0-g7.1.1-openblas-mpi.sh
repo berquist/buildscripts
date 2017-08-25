@@ -2,7 +2,7 @@
 
 # source me!
 
-ver=16.0-g6.3.1-openblas
+ver=16.0-g7.1.1-openblas-mpi
 dir_build="${apps}"/build/dirac_"${ver}"
 dir_source="${apps}"/dirac/DIRAC-16.0-Source
 
