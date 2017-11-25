@@ -2,7 +2,7 @@
 
 # source me!
 
-ver=berquist-g7.1.1-openblas
+ver=berquist-gnu-openblas
 dir_source="${apps}"/psi4/src_berquist
 dir_build="${apps}"/build/psi4_${ver}
 
