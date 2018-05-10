@@ -6,7 +6,10 @@
 make configure
 
 ./configure \
-    --prefix=${apps}/git/github
+    --prefix=${apps}/git/github \
+    --with-curl \
+    --with-expat \
+    --with-openssl
 
 # make -j4 all doc
 # make install install-doc install-html
