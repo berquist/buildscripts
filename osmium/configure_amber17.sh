@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 source /etc/profile.d/modules.sh
 module purge
 module load amber/17-tools17-g5.4.0
-module load orca/3.0.3
+module load orca/4.0.1
 
 cd "${AMBERHOME}"
 ./update_amber --update
@@ -17,11 +17,11 @@ GOTO=/usr/lib/libopenblas.so CC=gcc-5 CXX=g++-5 FC=gfortran-5 F90=gfortran-5 F77
 # GOTO=/usr/lib/libopenblas.so ./configure --with-netcdf /usr -openmpi gnu
 
 # ./configure intel >& log.configure.serial
-# make install -j8 >& log.make.install.serial
+# make install -j4 >& log.make.install.serial
 # make test.serial >& log.make.test.serial
 
 # ./configure -mpi intel >& log.configure.mpi
-# make install -j8 >& log.make.install.mpi
+# make install -j4 >& log.make.install.mpi
 # make test.serial >& log.make.test.serial.mpi
 
 # export DO_PARALLEL="mpirun -np 2"

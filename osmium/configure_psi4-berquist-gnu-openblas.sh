@@ -26,7 +26,7 @@ cmake \
       -DENABLE_PCMSolver=OFF \
       -DENABLE_snsmp2=OFF \
       -DENABLE_v2rdm_casscf=OFF \
-      "$dir_source"
+      "${dir_source}"
 
 # make all -j5
 # make test
