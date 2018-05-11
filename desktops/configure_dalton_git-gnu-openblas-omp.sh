@@ -27,7 +27,7 @@ cmake \
     -DENABLE_GPU=ON \
     -DENABLE_CUDA=ON \
     -DENABLE_CUBLAS=ON \
-    -DENABLE_OMP=ON \
+    -DENABLE_OPENMP=ON \
     -DENABLE_AUTO_BLAS=ON \
     -DENABLE_AUTO_LAPACK=ON \
     "${dir_source}"
