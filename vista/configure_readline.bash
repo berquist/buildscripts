@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-CPATH=$apps/ncurses/6.1/include:$apps/ncurses/6.1/include/ncurses:$CPATH ./configure \
+# curses_root=$apps/ncurses/6.1
+# CPATH=$curses_root/include:$curses_root/include/ncurses:$CPATH LD_LIBRARY_PATH=$curses_root/lib:$LD_LIBRARY_PATH
+# CPATH=$apps/termcap/1.3.1/include
+./configure \
     --prefix=$apps/readline/7.0 \
     --enable-static \
-    --disable-shared \
-    --with-curses
+    --enable-shared \
+    --without-curses
