@@ -16,6 +16,7 @@ cmake \
     -DENABLE_OMP=ON \
     -DENABLE_AUTO_BLAS=ON \
     -DENABLE_AUTO_LAPACK=ON \
+    -DENABLE_OPENRSP=ON \
     "${dir_source}"
 
 # make all -j4
