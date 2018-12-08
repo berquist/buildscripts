@@ -25,7 +25,7 @@ cmake \
       -DENABLE_simint=OFF \
       -DENABLE_gdma=ON \
       -DENABLE_PCMSolver=ON \
-      -DENABLE_snsmp2=ON \
+      -DENABLE_snsmp2=OFF \
       -DENABLE_v2rdm_casscf=ON \
       -DMAX_AM_ERI=6 \
       "${dir_source}"
