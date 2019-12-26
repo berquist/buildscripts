@@ -1,12 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # source me!
 
 ver=berquist-gnu-openblas
-dir_source="${apps}"/psi4/src_berquist
+dir_source="${HOME}"/development/psi4
 dir_build="${apps}"/build/psi4_${ver}
 
 module purge
+module load cfour
 
 # rm -rf "${dir_build}"
 mkdir -p "${dir_build}"

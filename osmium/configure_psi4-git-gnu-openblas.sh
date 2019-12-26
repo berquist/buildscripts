@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # source me!
 
@@ -25,8 +25,9 @@ cmake \
       -DENABLE_simint=OFF \
       -DENABLE_gdma=ON \
       -DENABLE_PCMSolver=ON \
-      -DENABLE_snsmp2=OFF \
+      -DENABLE_snsmp2=ON \
       -DENABLE_v2rdm_casscf=ON \
+      -DENABLE_gpu_dfcc=ON \
       -DMAX_AM_ERI=6 \
       "${dir_source}"
 
