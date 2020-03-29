@@ -2,9 +2,9 @@
 
 # source me!
 
-ver=2013-g6.5.0-slowmath
+ver=2015.1-g6.5.0-slowmath
 dir_build="${apps}"/build/dalton_"${ver}"
-dir_source="${HOME}"/repositories/dalton_2013
+dir_source="${HOME}"/repositories/dalton_2015.1
 
 mkdir -p "${dir_build}"
 cd "${dir_build}"

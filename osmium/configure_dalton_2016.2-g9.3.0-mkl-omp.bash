@@ -2,24 +2,19 @@
 
 # source me!
 
-ver=git-gnu-openblas-omp
+ver=2016.2-g9.3.0-mkl-omp
 dir_build="${apps}"/build/dalton_"${ver}"
-dir_source="${HOME}"/repositories/dalton
+dir_source="${HOME}"/repositories/dalton_2016.2
 
 mkdir -p "${dir_build}"
 cd "${dir_build}"
-
-# python2 ./setup \
-#         --prefix="${apps}/dalton/${ver}" \
-#         --omp \
-#         "${dir_build}"
 
 cmake \
     -DCMAKE_INSTALL_PREFIX="${apps}/dalton/${ver}" \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_OPENMP=ON \
-    -DENABLE_AUTO_BLAS=OPENBLAS \
-    -DENABLE_AUTO_LAPACK=OPENBLAS \
+    -DENABLE_AUTO_BLAS=MKL \
+    -DENABLE_AUTO_LAPACK=MKL \
     "${dir_source}"
 
 # make all -j4
