@@ -14,8 +14,8 @@ cmake \
     -DCMAKE_INSTALL_PREFIX="${apps}/lsdalton/${ver}" \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_OMP=ON \
-    -DENABLE_AUTO_BLAS=ON \
-    -DENABLE_AUTO_LAPACK=ON \
+    -DENABLE_AUTO_BLAS=OPENBLAS \
+    -DENABLE_AUTO_LAPACK=OPENBLAS \
     -DENABLE_OPENRSP=ON \
     "${dir_source}"
 

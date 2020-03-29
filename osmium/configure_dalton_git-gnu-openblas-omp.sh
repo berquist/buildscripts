@@ -9,11 +9,6 @@ dir_source="${HOME}"/repositories/dalton
 mkdir -p "${dir_build}"
 cd "${dir_build}"
 
-# python2 ./setup \
-#         --prefix="${apps}/dalton/${ver}" \
-#         --omp \
-#         "${dir_build}"
-
 cmake \
     -DCMAKE_INSTALL_PREFIX="${apps}/dalton/${ver}" \
     -DCMAKE_BUILD_TYPE=Release \
