@@ -1,0 +1,13 @@
+diff --git a/comp b/comp
+index e1906dd..554311d 100755
+--- a/comp
++++ b/comp
+@@ -2746,7 +2746,7 @@ if ($TARGET == linux64) then
+       case mod_shell_tools:
+       case mod_1e_primitives:
+       case omp_*:
+-         set EXTRAOPT="-flto -Ofast -ffast-math -Werror=uninitialized -Werror=align-commons -Wtabs" # -funconstrained-commons"
++         set EXTRAOPT="-flto -Ofast -ffast-math -fallow-argument-mismatch -Werror=uninitialized -Werror=align-commons -Wtabs" # -funconstrained-commons"
+       endsw
+       set GF_VER = `echo $GMS_GFORTRAN_VERNO | tr -d "."`
+       if($GF_VER >= 100) then

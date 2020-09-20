@@ -1,0 +1,285 @@
+diff --git a/comp b/comp
+index e1906dd..51ca481 100755
+--- a/comp
++++ b/comp
+@@ -1752,7 +1752,7 @@ if ($TARGET == ibm64) then
+ 
+       set EXTRAOPT=" "
+       if (($MODULE_F:e == f90) || ($MODULE_F:e == F90)) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -1860,7 +1860,7 @@ if ($TARGET == ibm64) then
+             if ($MODULE == dcscf)  set OPT='-O0'  # exam44, continues from 4.7
+             if ($MODULE == rohfcc) set OPT='-O0'
+             if ($MODULE == tddgrd) set OPT='-O0'  # exam41, continues from 4.6
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT -w"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 6.1:
+@@ -1886,7 +1886,7 @@ if ($TARGET == ibm64) then
+             # This flag should not be applied across all source files. But is added as an alternative
+             # to not being able to build a GAMESS binary at all.
+             #
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 7.1:
+@@ -1921,7 +1921,7 @@ if ($TARGET == ibm64) then
+             if ($MODULE == gugdm2 ) set OPT="-O0" #fixes failure of exam05
+            #if ($MODULE =~ ccsd3aacg* ) set EXTRAOPT="$EXTRAOPT --param=max-vartrack-size=500000000"  #--for debugging
+ 
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          default:
+@@ -2109,7 +2109,7 @@ if ($TARGET == linux32) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -2159,7 +2159,7 @@ if ($TARGET == linux32) then
+             if ($MODULE == dcscf)  set OPT='-O0'
+             if ($MODULE == rohfcc) set OPT='-O0'
+             if ($MODULE == tddgrd) set OPT='-O0'
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT -w"
+             breaksw
+          case 6.1:
+          case 6.2:
+@@ -2184,7 +2184,7 @@ if ($TARGET == linux32) then
+             # This flag should not be applied across all source files. But is added as an alternative
+             # to not being able to build a GAMESS binary at all.
+             #
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT -w"
+             breaksw
+          case 7.1:
+          case 7.2:
+@@ -2202,7 +2202,7 @@ if ($TARGET == linux32) then
+          case 10.1:
+             if ($MODULE =~ ccsd3aacg* ) set EXTRAOPT="$EXTRAOPT -fno-var-tracking-assignments"
+ #           if ($MODULE =~ ccsd3aacg* ) set EXTRAOPT="$EXTRAOPT --param=max-vartrack-size=500000000"  #--for debugging
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             breaksw
+          default:
+             echo Unrecognized gfortran version for linux32
+@@ -2235,7 +2235,7 @@ if ($TARGET == linux32) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -2558,12 +2558,12 @@ if ($TARGET == linux64) then
+ #
+ #         first, initialize OPT and EXTRAOPT
+ #
+-      set OPT='-O2'
++      set OPT='-O3'
+       if ($MODULE == zheev)  set OPT='-O0'  # defensive compiling
+ 
+-      set EXTRAOPT=" "
++      set EXTRAOPT=" -march=native -mno-fma"
+       if (($MODULE_F:e == f90) || ($MODULE_F:e == F90)) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -2672,7 +2672,7 @@ if ($TARGET == linux64) then
+             if ($MODULE == dcscf)  set OPT='-O0'  # exam44, continues from 4.7
+             if ($MODULE == rohfcc) set OPT='-O0'
+             if ($MODULE == tddgrd) set OPT='-O0'  # exam41, continues from 4.6
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT -w"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 6.1:
+@@ -2698,7 +2698,7 @@ if ($TARGET == linux64) then
+             # This flag should not be applied across all source files. But is added as an alternative
+             # to not being able to build a GAMESS binary at all.
+             #
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT -w"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 7.1:
+@@ -2732,7 +2732,7 @@ if ($TARGET == linux64) then
+             if ($MODULE == gugdm2 ) set OPT="-O0" #fixes failure of exam05
+             if ($MODULE =~ ccsd3aacg* ) set EXTRAOPT="$EXTRAOPT -fno-var-tracking-assignments"
+ #           if ($MODULE =~ ccsd3aacg* ) set EXTRAOPT="$EXTRAOPT --param=max-vartrack-size=500000000"  #--for debugging
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          default:
+@@ -2746,7 +2746,7 @@ if ($TARGET == linux64) then
+       case mod_shell_tools:
+       case mod_1e_primitives:
+       case omp_*:
+-         set EXTRAOPT="-flto -Ofast -ffast-math -Werror=uninitialized -Werror=align-commons -Wtabs" # -funconstrained-commons"
++         set EXTRAOPT="-flto -Ofast -ffast-math -fallow-argument-mismatch -Werror=uninitialized -Werror=align-commons -Wtabs" # -funconstrained-commons"
+       endsw
+       set GF_VER = `echo $GMS_GFORTRAN_VERNO | tr -d "."`
+       if($GF_VER >= 100) then
+@@ -2763,7 +2763,7 @@ if ($TARGET == linux64) then
+          case omp_int1:
+          case omp_grd1:
+          case omp_fmogrd1:
+-            set EXTRAOPT="$EXTRAOPT -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT"
+          endsw
+       endif
+       unset GF_VER
+@@ -2792,7 +2792,7 @@ if ($TARGET == linux64) then
+       if (`uname -p` == aarch64) set EXTRAOPT="-mcpu=native $EXTRAOPT"
+ #
+       set echo
+-      gfortran -c -fdefault-integer-8 -g $GMS_FPE_FLAGS $OPT $EXTRAOPT $MODULE_F
++      gfortran -c -fdefault-integer-8 $GMS_FPE_FLAGS $OPT $EXTRAOPT $MODULE_F
+       unset echo
+       breaksw
+ 
+@@ -2811,7 +2811,7 @@ if ($TARGET == linux64) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -3119,9 +3119,9 @@ if ($TARGET == linux64) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-        set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++        set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+-        set EXTRAOPT="$EXTRAOPT -std=legacy -w -fno-aggressive-loop-optimizations"
++        set EXTRAOPT="$EXTRAOPT -std=legacy -w"
+       endif
+ 
+       if (($MODULE == cchem) || ($MODULE == ga)) then
+@@ -3217,7 +3217,7 @@ if ($TARGET == mac32) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -3260,7 +3260,7 @@ if ($TARGET == mac32) then
+             if ($MODULE == cosmo)  set OPT='-O0'
+             if ($MODULE == dcscf)  set OPT='-O0'
+             if ($MODULE == tddgrd) set OPT='-O0'
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT -w"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          default:
+@@ -3335,7 +3335,7 @@ if ($TARGET == mac64) then
+ 
+       set EXTRAOPT=" "
+       if (($MODULE_F:e == f90) || ($MODULE_F:e == F90) ) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -3380,7 +3380,7 @@ if ($TARGET == mac64) then
+             if ($MODULE == cosmo)  set OPT='-O0'
+             if ($MODULE == dcscf)  set OPT='-O0'
+             if ($MODULE == tddgrd) set OPT='-O0'
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations"
++            set EXTRAOPT="$EXTRAOPT -w"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 6.1:
+@@ -3388,7 +3388,7 @@ if ($TARGET == mac64) then
+          case 6.3:
+          case 6.4:
+          case 6.5:
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 7.1:
+@@ -3396,14 +3396,14 @@ if ($TARGET == mac64) then
+          case 7.3:
+          case 7.4:
+          case 7.5:
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 8.1:
+          case 8.2:
+          case 8.3:
+          case 8.4:
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          case 9.1:
+@@ -3411,7 +3411,7 @@ if ($TARGET == mac64) then
+          case 9.3:
+          case 10.0:
+          case 10.1:
+-            set EXTRAOPT="$EXTRAOPT -w -fno-aggressive-loop-optimizations -funconstrained-commons"
++            set EXTRAOPT="$EXTRAOPT -w -funconstrained-commons"
+             set EXTRAOPT="$EXTRAOPT -Werror=uninitialized -Werror=align-commons -Wtabs"
+             breaksw
+          default:
+diff --git a/ddi/compddi b/ddi/compddi
+index e21e9ac..3e73e62 100755
+--- a/ddi/compddi
++++ b/ddi/compddi
+@@ -905,7 +905,7 @@ endif
+      if (`uname -p` == aarch64) set ARCH='-mcpu=native'
+      
+      set CC = 'gcc'
+-     set CFLAGS = "-DLINUX $ARCH -O3 -fstrict-aliasing -I./"
++     set CFLAGS = "-DLINUX $ARCH -O3 -march=native -mno-fma -fstrict-aliasing -I./"
+      set CLIBS  = "-lpthread"
+ 
+      if ($GMS_PHI == knc) then
+diff --git a/runall b/runall
+index d2d48d7..cdb15c9 100755
+--- a/runall
++++ b/runall
+@@ -38,7 +38,7 @@ endif
+ #  Otherwise the test is executed interactively by 'rungms'.
+ #
+ set i=1
+-set Ntest=47
++set Ntest=48
+ while ($i <= $Ntest)
+                set NUM=$i
+   if ($i <= 9) set NUM=0$i
+diff --git a/tests/standard/exam43.inp b/tests/standard/exam43.inp
+index 6e5eff7..e2cac2b 100644
+--- a/tests/standard/exam43.inp
++++ b/tests/standard/exam43.inp
+@@ -49,7 +49,6 @@
+ !
+  $contrl scftyp=rhf runtyp=g3mp2 $end  
+  $system timlim=2 mwords=2 memddi=5 $end
+- $scf    dirscf=.true. $end
+  $data
+ Methane...G3(MP2,CCSD(T))
+ Td

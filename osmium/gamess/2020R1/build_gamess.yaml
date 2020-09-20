@@ -1,0 +1,111 @@
+---
+- name: build, test, and install GAMESS
+  hosts: localhost
+  gather_facts: true
+  vars:
+    version: 2020R1
+    archive_name: "gamess-{{ version }}.tar.zst"
+    build_dir: "/home/eric/data/opt/apps/build/build_gamess_{{ version }}"
+    base_dir: "{{ build_dir }}/gamess-{{ version }}"
+    install_dir: "/home/eric/data/opt/apps/gamess/{{ version }}"
+  tasks:
+    # The build directory and build products should persist, so don't create a
+    # temporary directory.
+    - name: create build directory
+      file:
+        state: directory
+        path: "{{ build_dir }}"
+    - name: copy everything to temp directory
+      copy:
+        src: "{{ item }}"
+        dest: "{{ build_dir }}/{{ item }}"
+      loop:
+        - "{{ archive_name }}"
+        - all_patches.patch
+    - name: uncompress GAMESS tarball
+      # unarchive:
+      #   src: "{{ build_dir }}/gamess-current.tar.gz"
+      #   dest: "{{ build_dir }}"
+      #   creates: "{{ base_dir }}"
+      command:
+        chdir: "{{ build_dir }}"
+        argv:
+          - unzstd
+          - "{{ archive_name }}"
+        # This is a little weird but should work
+        creates: "{{ base_dir }}.tar"
+    - name: untar GAMESS tarball
+      unarchive:
+        src: "{{ base_dir }}.tar"
+        dest: "{{ build_dir }}"
+        creates: "{{ base_dir }}"
+    - name: apply megapatch
+      patch:
+        src: "{{ build_dir }}/all_patches.patch"
+        basedir: "{{ base_dir }}"
+        strip: 1
+    - name: create install info
+      command:
+        chdir: "{{ base_dir }}"
+        argv:
+          - python
+          - bin/create-install-info.py
+          - --fortran_version=10.1
+          - --math=openblas
+          - --mathlib_path=/usr/lib
+          - --openmp
+        creates: install.info
+    - name: make modules
+      command:
+        chdir: "{{ base_dir }}"
+        argv:
+          - make
+          - modules
+          - -j1
+        creates: "{{ base_dir }}/object/mod_dft_gridint.mod"
+    - name: make
+      command:
+        chdir: "{{ base_dir }}"
+        argv:
+          - make
+          - "-j{{ ansible_processor_cores }}"
+        creates: "{{ base_dir }}/object/zunix.o"
+    # - name: 
+    - name: create testing scratch directory
+      file:
+        state: directory
+        path: "{{ base_dir }}/scr"
+    # - name: patch rungms for testing
+    #   patch:
+    #     strip: 1
+    #     state: present
+    # - name: run tests
+    # - name: unpatch rungms
+    #   patch:
+    #     strip: 1
+    #     state: absent
+    # - name: make new rungms for installation
+    - name: make GAMESS install basedir
+      file:
+        state: directory
+        path: "{{ install_dir }}"
+    - name: install GAMESS
+      copy:
+        src: "{{ base_dir }}/{{ item }}"
+        dest: "{{ install_dir }}/{{ item }}"
+        mode: preserve
+      loop:
+        # scripts
+        - gms-files.csh
+        - runall
+        - rungms
+        - rungms-dev
+        # binaries
+        - data_server.x
+        - ddi_test.x
+        - ddikick.x
+        - gamess.00.x
+        # directories
+        - auxdata
+        - tools
+        - vb2000

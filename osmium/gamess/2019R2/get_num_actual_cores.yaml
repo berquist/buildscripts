@@ -1,0 +1,13 @@
+---
+- name: get the actual number of cores
+  hosts: localhost
+  tasks:
+    - name: ansible_processor_cores
+      debug:
+        msg: "{{ ansible_processor_cores }}"
+    - name: ansible_processor_count
+      debug:
+        msg: "{{ ansible_processor_count }}"
+    - name: ansible_processor_vcpus
+      debug:
+        msg: "{{ ansible_processor_vcpus }}"

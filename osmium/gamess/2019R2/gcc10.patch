@@ -1,0 +1,85 @@
+diff --git a/comp b/comp
+index d8698fe..e2bb981 100755
+--- a/comp
++++ b/comp
+@@ -1731,7 +1731,7 @@ if ($TARGET == ibm64) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -2066,7 +2066,7 @@ if ($TARGET == linux32) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -2174,7 +2174,7 @@ if ($TARGET == linux32) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -2489,7 +2489,7 @@ if ($TARGET == linux64) then
+ 
+       set EXTRAOPT=" "
+       if (($MODULE_F:e == f90) || ($MODULE_F:e == F90)) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -2663,7 +2663,7 @@ if ($TARGET == linux64) then
+       case mod_shell_tools:
+       case mod_1e_primitives:
+       case omp_*:
+-         set EXTRAOPT="-flto -Ofast -ffast-math" # -funconstrained-commons"
++         set EXTRAOPT="-flto -Ofast -ffast-math -fallow-argument-mismatch" # -funconstrained-commons"
+       endsw
+ 
+ #              a backdoor way to set optimization level differently.
+@@ -2708,7 +2708,7 @@ if ($TARGET == linux64) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -3014,7 +3014,7 @@ if ($TARGET == linux64) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-        set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++        set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+         set EXTRAOPT="$EXTRAOPT -std=legacy -w -fno-aggressive-loop-optimizations"
+       endif
+@@ -3111,7 +3111,7 @@ if ($TARGET == mac32) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
+@@ -3228,7 +3228,7 @@ if ($TARGET == mac64) then
+ 
+       set EXTRAOPT=" "
+       if ($MODULE_F:e == f90) then
+-         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none"
++         set EXTRAOPT="$EXTRAOPT -ffree-line-length-none -fallow-argument-mismatch"
+       else
+          set EXTRAOPT="$EXTRAOPT -std=legacy"
+       endif
